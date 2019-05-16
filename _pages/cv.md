@@ -11,9 +11,19 @@ redirect_from:
 
 Education
 ======
-* M.S. in Electrical and Computer Engineering, University of Wisconsin-Madison | 2018-present
-* B.Tech in Electronics and Telecommunication Engineering, Indian Institute of Engineering Science and Technology, Shibpur | 2014-18 
+* M.S. in Electrical and Computer Engineering
+	* University of Wisconsin-Madison
+	* 2018-present
 
+* B.Tech in Electronics and Telecommunication Engineering
+	* Indian Institute of Engineering Science and Technology, Shibpur
+	* 2014-18 
+
+Publications
+======
+* Unsupervised Anomalous Trajectory Detection in Crowded Scenes
+	* 13th IEEE International Conference on Industrial and Information System
+	* December, 2018
 
 
 Work experience
