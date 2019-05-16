@@ -1,6 +1,7 @@
 ---
 title: "Unsupervised Anomalous Trajectory Detection for Crowded Scenes"
-excerpt: "Published Research Work<br/><img src='/images/unsup_traj.png'>"
+excerpt: "Published Research Work"
+<!-- <br/><img src='/images/unsup_traj.png'>" -->
 collection: portfolio
 ---
 
