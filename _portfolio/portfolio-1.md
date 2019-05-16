@@ -1,7 +1,17 @@
 ---
-title: "Portfolio item number 1"
-excerpt: "Short description of portfolio item number 1<br/><img src='/images/500x300.png'>"
+title: "Hierarchical Attention based Deep Neural Networks for Toxic Comments Classification"
+excerpt: "Exploratory Project based on Jigsaw AI dataset <br/><img src='/images/han.png'>"
 collection: portfolio
 ---
 
-This is an item in your portfolio. It can be have images or nice text. If you name the file .md, it will be parsed as markdown. If you name the file .html, it will be parsed as HTML. 
+
+Straight Neural Network methods are effective for text classification tasks but better representation can be achieved by including knowledge of document structure in the model architecture. This can be understood as:
+- Not all parts of the document is relevant for understanding the content
+- Finding relevant sections in a document involves modeling the interactions of the words and not just the presence in isolation
+
+The hierarchical attention that can be used here is:
+1. Words from sentences
+2. Sentences from comments.
+
+
+The link to the Github Repository can be [found here.](https://github.com/deepandas11/HAN-and-Data-Augmentation-Text-Classifier)
