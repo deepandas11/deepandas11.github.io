@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title:  "Default post - First Test"
 categories: Testing
 ---
