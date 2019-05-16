@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "CV"
+title: "Curriculum Vitae"
 permalink: /cv/
 author_profile: true
 redirect_from:
@@ -8,6 +8,8 @@ redirect_from:
 ---
 
 {% include base_path %}
+
+Find a link to my [full resume here](https://drive.google.com/file/d/1QxPJHg15qACRrJ68iSoX3zgKuWBWuA0i/view)
 
 Education
 ======
