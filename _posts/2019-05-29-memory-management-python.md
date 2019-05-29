@@ -49,7 +49,8 @@ We should first discuss a bit about the abstractions that the object allocator u
 
 - The **Block** is the smallest structure. It is basically a chunk of memory of a certain size and it can keep only one Python object of a fixed size. The size can vary as shown in the table. 
 
-![Block size classes]({{site.url}}/images/blocks_structure.png)
+<img src="{{site.url}}/images/blocks_structure.png" style="display: block; margin: auto;" />
+
 
 - A collection of blocks of the same size is called a **Pool** and the size of a pool is equal to the size of a memory page, ie 4KB.  Pools of the same size are linked together using doubly linked lists and has some fields that store critical data:
 	- ```szidx```: keeps the size class index of the blocks that constitute the pool
