@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Python Memory Management"
-categories: Python, python-internals, cpython
+categories: python
 ---
 
 Python uses a specially tuned memory allocator on top of a general purpose allocator. This suits the universal object model in Python really well, while setting up a nice hierarchy in the memory management system, beginning from the OS' Virtual Memory Manager to Python's own object allocator. In this post, I have tried to build up a few concepts while leading up to detailed discussion about the special Python memory allocator. *Note: I do not discuss the OS VMM or C malloc.* 
