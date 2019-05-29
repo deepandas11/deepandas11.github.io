@@ -4,13 +4,13 @@ title:  "Python Memory Management"
 categories: Python
 ---
 
-This is mostly a compilation of some of the mose crucial concepts that I grasped while studying rapidly about the said topic. I stumbled upon this while doing a project of my own. 
+Python uses a specially tuned memory allocator on top of a general purpose allocator. This suits the universal object model in Python really well, while setting up a nice hierarchy in the memory management system, beginning from the OS' Virtual Memory Manager to Python's own object allocator. In this post, I have tried to build up a few concepts while leading up to detailed discussion about the special Python memory allocator. *Note: We do not discuss the OS VMM or C malloc.* 
 
 ## The Characters 
 The way I look at it, Python invloves a few characters in this Memory management scheme: The first and the most obvious one being the **Memory** itself, almost analagous to a book with fixed size pages. Several **writers**, or the applications and processes on the system, can now use this book to write their own stuff on it. Some of the stuff written long back are not relevant and so, they have to be removed by the **garbage collector**.
 
 
-## CPython 
+## The Python Object Model & CPython 
 
 Memory management is nothing but the process by which applications read and write data. Since there's only a finite amount of storage space available at any given time, the process responsible for allocating these resources has to be optimized. This process of providing memory is generally called **allocation**.
 
@@ -21,11 +21,41 @@ So, what does this Default Python implementation written in C, actually do?: It 
 - Interpret written code based on the rules referenced in the reference manual. This is essentially the step where your Python code is interpreted into bytecode. This bytecode is actually saved in the ```.pyc``` or ```__pycache__``` folder. 
 - Execute this interpreted bytecode on a virtual machine.
 
-CPython has a few limitations as well. Firstly, it is written in C and therefore, has no Object Oriented features. To imitate Python's universal object implementation, CPython creates a struct called ```PyObject```, which every other object in CPython uses. This ```PyObject``` contains two things:
-- ```ob_refcnt```: Reference Count
-- ```ob_type```: Pointer to another type
+CPython has a few limitations as well. Firstly, it is written in C and therefore, has no Object Oriented features. To imitate Python's universal object model, CPython creates a struct called ```PyObject```, which every other object in CPython uses. ```struct``` can be considered to a grouping of different data types. This ```PyObject``` contains two things:
+- ```ob_refcnt```: Reference Count.
+- ```ob_type```: Pointer to another type. The object type is just another struct that describes a Python object.
+
+Each object also gets its own specific memory allocator and memory deallocator that can get and free up the required memory space, respectively. 
 
 *TLDR: CPython(aka the Default Python Implementation) sits in your OS and achieves the task of executing your Python code. This is also where the Memory management algorithms and structures exist.*
+
+
+## Interpreter Lock and Garbage Collection
+
+Since our systems are not blessed with infinite memory, there are often situations when a block of memory can have conflicting claims. We would not want such a mess. The **Global Interpreter Lock** ensures that only one process can write on the memory at a time. This also achieves the objective of no shared claims to a single resource. The Interpreter Lock is literally a global lock on the interpreter when a process is interacting with a shared resource. 
+
+When a block of data is no longer referenced, the garbage collector swoops in and frees the memory space so that other objects can use it. This happens when the ```ob_refcnt``` drops to 0 for a specific object. You can check this using the ```sys.getrefcount(object)``` method. 
+
+
+## Default Implementation Memory Management
+
+As I mentioned before, one of the several layers of abstraction that a Python program has to go through before it interacts with the physical memory is the Operating System. The OS essentially creates a virtual memory as a layer that is accessed by Python and other applications. The OS is responsible for carving out a chunk of memory and assign it to a Python process.
+
+Out of the assigned memroy, Python uses a portion for internal use and non-object memory. The other portion is to store objects. The CPython Object allocator works in the latter area and gets called every time an object needs to be allocated or deleted. The allocator is essentially built in as a *fast, special purpose memory allocator on top of a general purpose malloc*. It is optimized heavily to work with small amounts of data at a time. We will also look at the general memory allocation strategy in C. 
+
+## PyMalloc
+
+We should first discuss a bit about the abstractions that the object allocator uses: arena, pool, and block. 
+
+- The **Block** is the smallest structure. It is basically a chunk of memory of a certain size and it can keep only one Python object of a fixed size. The size can vary as shown in the table. 
+
+![Block size classes](images/blocks_structure.png)
+
+- A collection of blocks of the same size is called a **Pool** and the size of a pool is equal to the size of a memory page, ie 4KB.  Pools of the same size are linked together using doubly linked lists and has some fields that store critical data:
+	- ```szidx```: keeps the size class index of the blocks that constitute the pool
+	- ```ref.count```: Number of blocks used to create the pool
+	- ```arenaindex```: Stores the number of arena in which the pool was created.
+	- ```freeblock```: freeblock points to the start of a singly linked list of free blocks within the pool. 
 
 
 
