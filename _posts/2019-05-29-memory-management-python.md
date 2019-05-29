@@ -4,7 +4,7 @@ title:  "Python Memory Management"
 categories: Python
 ---
 
-Python uses a specially tuned memory allocator on top of a general purpose allocator. This suits the universal object model in Python really well, while setting up a nice hierarchy in the memory management system, beginning from the OS' Virtual Memory Manager to Python's own object allocator. In this post, I have tried to build up a few concepts while leading up to detailed discussion about the special Python memory allocator. *Note: We do not discuss the OS VMM or C malloc.* 
+Python uses a specially tuned memory allocator on top of a general purpose allocator. This suits the universal object model in Python really well, while setting up a nice hierarchy in the memory management system, beginning from the OS' Virtual Memory Manager to Python's own object allocator. In this post, I have tried to build up a few concepts while leading up to detailed discussion about the special Python memory allocator. *Note: I do not discuss the OS VMM or C malloc.* 
 
 ## The Characters 
 The way I look at it, Python invloves a few characters in this Memory management scheme: The first and the most obvious one being the **Memory** itself, almost analagous to a book with fixed size pages. Several **writers**, or the applications and processes on the system, can now use this book to write their own stuff on it. Some of the stuff written long back are not relevant and so, they have to be removed by the **garbage collector**.
@@ -55,31 +55,30 @@ We should first discuss a bit about the abstractions that the object allocator u
 	- ```szidx```: keeps the size class index of the blocks that constitute the pool
 	- ```ref.count```: Number of blocks used to create the pool
 	- ```arenaindex```: Stores the number of arena in which the pool was created.
-	- ```freeblock```: freeblock points to the start of a singly linked list of free blocks within the pool. 
+	- ```freeblock```: freeblock points to the start of a singly linked list of free blocks within the pool. All the available blocks in a pool are **NOT** linked all together when a pool is initialized. This is in accordance with the zen of python: *Never to touch a piece of memory unless it's actually needed*. Only the first two blocks are set up. If a block is empty, it stores the address of the next empty block instead of an object. 
+A Pool also has three associated states:
+	- Used: Neither full nor empty
+	- Full: All blocks allocated
+	- Empty: All blocks available
 
+- An **Arena** is a 256KB chunk of memory providing space for 64 pools(64 pools of 4KB each = 256KB). All arenas are linked using doubly linked list. This is analogous to a list of containers which automatically allocates new memory for pools when needed. The struct associated with an arena looks like:
 
-
-
-
-
-
-```python
-import numpy as np 
-
-a = np.ndarray([1,2,3])
-
-
-print(a)
+```c
+struct arena_object{
+	uintptr_t address;
+	block* pool_address;
+	uint nfreepools;
+	uint ntotalpools;
+	struct pool_header* freepools;
+	struct arena_object* nextarena;
+	struct arena_object* prevarena;
+};
 ```
 
+It is interesting to note that PyMalloc rarely returns memory back to the Operating System. An arena is released completely if all its pools are empty. This might lead to a lot of unused memory for long running processes. 
 
-### Next
 
-In this section, we will check both inline \\( a = x^2 + y^2 \\) and block Latex Equations using MathJax
+***TLDR: Python has a dedicated object allocator for small objects(smaller or equal to 512 Bytes). This keeps some chunks of already allocated memory for further use in the future. In most cases, this memory is never released and is abstracted through three levels: arenas, pools and blocks.***
 
-\\[ b = x^2 + y^2 \\]
 
-\\[ b = \frac{1}{n^2}\\]
-
-We are done!
-
+Thank you!
