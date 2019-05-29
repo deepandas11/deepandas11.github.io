@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Python Memory Management"
-categories: Python
+categories: Python, python-internals, cpython
 ---
 
 Python uses a specially tuned memory allocator on top of a general purpose allocator. This suits the universal object model in Python really well, while setting up a nice hierarchy in the memory management system, beginning from the OS' Virtual Memory Manager to Python's own object allocator. In this post, I have tried to build up a few concepts while leading up to detailed discussion about the special Python memory allocator. *Note: I do not discuss the OS VMM or C malloc.* 
@@ -49,7 +49,7 @@ We should first discuss a bit about the abstractions that the object allocator u
 
 - The **Block** is the smallest structure. It is basically a chunk of memory of a certain size and it can keep only one Python object of a fixed size. The size can vary as shown in the table. 
 
-![Block size classes](images/blocks_structure.png)
+![Block size classes]({{site.url}}/images/blocks_structure.png)
 
 - A collection of blocks of the same size is called a **Pool** and the size of a pool is equal to the size of a memory page, ie 4KB.  Pools of the same size are linked together using doubly linked lists and has some fields that store critical data:
 	- ```szidx```: keeps the size class index of the blocks that constitute the pool
