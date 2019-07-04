@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The New Windows Terminal"
+title:  "The New Microsoft Terminal"
 categories: system, setup, windows, terminal, bash, wsl, linux
 ---
 
