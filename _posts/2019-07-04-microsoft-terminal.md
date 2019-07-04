@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Microsoft Terminal"
+title:  "The New Windows Terminal"
 categories: system, setup, windows, terminal, bash, wsl, linux
 ---
 
@@ -9,7 +9,7 @@ So, the Microsoft Store now finally has the Preview version of the much hyped Wi
 
 Another highlight for this Terminal Application is its display configurability using a JSON file called "profile.json". A shortcut (Ctrl+,) or the options drop down on the App can land you here, after which you can adjust your settings accordingly. I am sharing my json file here for your reference. 
 
-```
+```json
 {
     "globals" : 
     {
