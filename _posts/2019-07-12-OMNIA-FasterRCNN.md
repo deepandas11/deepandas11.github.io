@@ -66,6 +66,14 @@ Therefore, there is no loss backpropagation component from this categorical loss
 
 *2. Masked Binary Cross Entropy*
 
-Binary cross entropy treats 
+Binary cross entropy treats the different categories as independent binary classification tasks. Each logit decides whether the sample belongs to a particular category //(c//) or not. A mask is applied to the predictions for all regions marked as unsafe predictions. 
 
+//[ L_{binary} = - \frac{1}{R(C+1)} \sum_{r,c} w_r^c (t_r^c log(sigmoid(x_r^c)) + (1-t_r^c) log(1-sigmoid(x_r^c))) //]
+
+Thus, if a RoI matches with an unsafe prediction of category *c*, logits for background and that category will not contribute to the loss, while logits for all other categories will be decreased after an optimization step. 
+
+
+## Results
+
+<img src="{{site.url}}/images/omnia_2.png" style="display: block; margin: auto;" />
 
