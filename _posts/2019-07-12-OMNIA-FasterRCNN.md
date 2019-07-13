@@ -46,25 +46,26 @@ Two Domain Adapted Faster R-CNN detectors are trained. The first detector \\(Det
 
 ### Model Framework
 
-*Region Proposal Network*: Instead of assigning a binary label for foreground/background classification, like in Faster R-CNN, this method adds another **undefined** label to detect all proposals with an unsafe prediction. 
+**Region Proposal Network**: Instead of assigning a binary label for foreground/background classification, like in Faster R-CNN, this method adds another **undefined** label to detect all proposals with an unsafe prediction. 
 
 
-*SoftSig Box Classifier*: The idea is to avoid the problem that we discussed earlier. Region Proposals from \\(Detect_b)// on \\(I_a)// will indeed serve as additional labellings but one cannot be completely sure that the predicted class is true. However, one can at least say that the predicted RoI is not a background. The custom loss function defined here takes care of these constraints. The loss is called *SoftSig* because it combines both SOFTmax and SIGmoid activation functions. The overall loss is:
+**SoftSig Box Classifier**: The idea is to avoid the problem that we discussed earlier. Region Proposals from \\(Detect_b)// on \\(I_a)// will indeed serve as additional labellings but one cannot be completely sure that the predicted class is true. However, one can at least say that the predicted RoI is not a background. The custom loss function defined here takes care of these constraints. The loss is called *SoftSig* because it combines both SOFTmax and SIGmoid activation functions. The overall loss is:
 
 \\[L_{softsig} = L_{categorical} + \lambda_{binrary}L_{binary}\\]
 
 We discuss both components here, with the assumption that from a sample of \\(R\\) RoIs, we have a region \\(r\\) and it matches with a box of category \\(c\\)
 
 
-*1. Masked Categorical Cross-Entropy*
+**1. Masked Categorical Cross-Entropy**
+
 This loss term is responsible for aligning predicted probabilities with targets and has a mask that helps discard this term for unsafe predictions. 
 
-\\[ L_{categorical} = - \frac{1}{R} \sum_{r} m_r \sum_{c} t_r^c log(softmax(x_r&c)) \\]
+\\[ L_{categorical} = -\frac{1}{R} \sum_{r} \sum_{c} t_r^c log(softmax(x_r^c)) \\]
 
 Therefore, there is no loss backpropagation component from this categorical loss term for all unsafe region predictions. Since, we aren't definitely sure about its classification, we cannot let it align with any given class in the ground truth. The mask \\(m_r\\) = 0 when \\(r\\) is an unsafe prediction.
 
 
-*2. Masked Binary Cross Entropy*
+**2. Masked Binary Cross Entropy**
 
 Binary cross entropy treats the different categories as independent binary classification tasks. Each logit decides whether the sample belongs to a particular category \\(c\\) or not. A mask is applied to the predictions for all regions marked as unsafe predictions. 
 
