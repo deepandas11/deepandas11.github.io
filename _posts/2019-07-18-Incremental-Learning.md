@@ -1,8 +1,12 @@
 ---
 layout: post
-title:  "Incremental Learning"
+title:  "Incremental Learning and Knowledge Distillation"
 categories: deep-learning, computer-vision, detection, incremental-learning
 --- 
+**UNFINISHED**
+
+
+A detailed introduction to Knowledge distillation from complex neural networks and a much needed end to end Incremental Learning technique. 
 
 
 ## A Catastrophe
@@ -22,3 +26,4 @@ When an image is passed to an Image Classification network, we identify the know
 
 <img src="{{site.url}}/images/increm_1.png" style="display: block; margin: auto;" />
 
+This generalization ability is the key idea behind the idea of distilling knowledge appropriately from a much bigger model into a smaller model. If a small model is trained on the same dataset as a much more complex model and its performance is compared to another smaller model which is derived by distilling the knowledge from a complex model trained on the same dataset, we can see that the latter model performs better.
