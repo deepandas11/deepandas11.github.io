@@ -26,4 +26,10 @@ When an image is passed to an Image Classification network, we identify the know
 
 <img src="{{site.url}}/images/increm_1.png" style="display: block; margin: auto;" />
 
-This generalization ability is the key idea behind the idea of distilling knowledge appropriately from a much bigger model into a smaller model. If a small model is trained on the same dataset as a much more complex model and its performance is compared to another smaller model which is derived by distilling the knowledge from a complex model trained on the same dataset, we can see that the latter model performs better.
+This generalization ability is the key idea behind the idea of distilling knowledge appropriately from a much bigger model into a smaller model. If a small model is trained on the same dataset as a much more complex model and its performance is compared to another smaller model which is derived by distilling the knowledge from a complex model trained on the same dataset, we can see that the latter model performs better. This generalization ability is transferred to small models by using the class probabilities produced by the cumbersome model as "soft targets". A separate transfer set or the same training set can be used. If the soft targets tend to follow a uniform distribution, or in other words, have more entropy, they tend to convey more information about the image than the hard target alone. Moreover, this also provides less variance in gradient between training cases, leading to the requirement of much less training data for the small model. Previous methods have used the logits produced by complex models directly to extract information from the soft targets. However, a much more meaningful way to do so is the distillation technique in which one raises the temperature of the softmax produced by the complex model. 
+
+### Raising the Temperature
+
+A softmax converts the logit computed for each class into a probability by comparing the corresponding logit to all other logits. 
+
+\\[ q_i = \frac{\exp{z_i / T}}{\sum_{j} \exp{z_j / T}}\\]
