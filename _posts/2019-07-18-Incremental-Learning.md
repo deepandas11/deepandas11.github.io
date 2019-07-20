@@ -3,7 +3,7 @@ layout: post
 title:  "Incremental Learning and Knowledge Distillation"
 categories: deep-learning, computer-vision, detection, incremental-learning
 --- 
-**UNFINISHED**
+**INCOMPLETE**
 
 
 A detailed introduction to Knowledge distillation from complex neural networks and a much needed end to end Incremental Learning technique. 
@@ -33,3 +33,30 @@ This generalization ability is the key idea behind the idea of distilling knowle
 A softmax converts the logit computed for each class into a probability by comparing the corresponding logit to all other logits. 
 
 \\[ q_i = \frac{\exp{z_i / T}}{\sum_{j} \exp{z_j / T}}\\]
+
+In the above formulation, we are introduced to this Temperature parameter \\(T\\). Normally, it is set to 1. A higher value of T generates a softer probability distribution over classes. The steps involved in the simplest form of distillation are:
+
+- Train a distilled model by training it on a transfer set 
+- Training is done using a soft target distribution for each case in the transfer set by using the complex model
+- The complex model uses the same temperature in its softmax
+- The same temperature is also used when training the distilled model
+- Post training, the temperature is lowered to 1. 
+
+An additional step that can be added is to introduce a loss function that checks if the distilled model can match the correct output label of the image. This is possible only when the transfer set has correctly labeled images. In such a case, one can use a weighted average of the two objective functions. The first objective function is the cross entropy with the soft targets and this is computed using the same high temperature as in the softmax for the complex model. For the first objective, we have a cross entropy with the correct labels. The latter is usually weighed less.
+
+
+<img src="{{site.url}}/images/increm_2.png" style="display: block; margin: auto;" />
+
+
+<img src="{{site.url}}/images/increm_3.png" style="display: block; margin: auto;" />
+
+
+
+
+
+
+
+
+
+
+
