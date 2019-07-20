@@ -32,7 +32,7 @@ This generalization ability is the key idea behind the idea of distilling knowle
 
 A softmax converts the logit computed for each class into a probability by comparing the corresponding logit to all other logits. 
 
-\\[ q_i = \frac{\exp{z_i / T}}{\sum_{j} \exp{z_j / T}}\\]
+\\[ q_i = \frac{\exp{(z_i / T)}}{\sum_{j} \exp{(z_j / T)}}\\]
 
 In the above formulation, we are introduced to this Temperature parameter \\(T\\). Normally, it is set to 1. A higher value of T generates a softer probability distribution over classes. The steps involved in the simplest form of distillation are:
 
