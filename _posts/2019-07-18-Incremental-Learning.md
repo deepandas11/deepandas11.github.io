@@ -84,6 +84,44 @@ It is to be noted that the distillation loss is applied only on the old classifi
 
 
 
+### Incremental Learning Procedure
+
+The Incremental Learning step has four main steps as illustrated in the following figure:
+
+<img src="{{site.url}}/images/increm_4.png" style="display: block; margin: auto;" />
+
+- **Construction of the Training set**: The training set should have samples from both new and old classes. The design of the loss function is such that each sample should have two associated labels. For the classification loss component \\(L_C\\), we use the one-hot encoded vector. For the distillation loss component \\(L_{D_f}\\), we use the logits produced by every classification layer with old classes. Each image in the training set has a classification label and \\(F\\) distillation labels, where \\(F\\) is the number of old classification layers. 
+- **Training**: During training, all weights are updated. For any sample, the features obtained from the feature extractor are likely to change between successive incremental steps. The classification layer should adapt to this. 
+- **Balanced Fine Tuning**: To deal with the unbalanced training scenario with regard to new and old classes, the authors introduce an additional fine-tuning stage with a small learning rate and a balanced set of samples. This subset has samples from all classes, old and new. To prevent the model from forgetting the knowledge it acquired in the previous step, the authors added a temporary distillation loss to the classification layer of the new class. 
+- **Representative Memory Update**: The representative memory must be updated to include exemplars from the new class. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
