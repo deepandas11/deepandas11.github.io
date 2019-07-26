@@ -67,7 +67,22 @@ The objective of this unit is to create a subset with the most representative sa
 
 ### Network Architecture
 
-In this section, we discuss the network architecture in greater detail. As seen in the figure, the network has several components. One of them is the feature extractir which corresponds to a set of layers that transforms the input image into a feature vector. The classification layer takes these features and produces a set of logits. 
+In this section, we discuss the network architecture in greater detail. As seen in the figure, the network has several components. One of them is the feature extractir which corresponds to a set of layers that transforms the input image into a feature vector. The classification layer takes these features and produces a set of logits. The general procedural flow is as follows:
+
+- Begin with traditional non-incremental architecture for classification.
+- When new classes are trained, add a new classification layer and connect it to feature extractor layer
+- Any pre-trained architecture can be used as feature extractor layer
+
+
+### Cross Distilled loss function
+
+This loss function has two main parts: A Distillation loss \\(L_{D_f}\\), and a Multi-class cross entropy loss \\(L_C\\). 
+
+\\[L(\theta) = L_C(\theta) + \sum_{f=1}^{F}L_{D_f}(\theta)\\]
+
+It is to be noted that the distillation loss is applied only on the old classification layers, whereas the cross entropy loss is applied on samples from old and new classes. The distillation loss ensures that the model doesn't suffer catastrophic failure by improving the generalization ability of the classifier on the older classes. The cross entropy loss enhances the overall discriminative power of the classifier. 
+
+
 
 
 
