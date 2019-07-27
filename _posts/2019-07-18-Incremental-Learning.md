@@ -1,9 +1,8 @@
 ---
 layout: post
-title:  "Incremental Learning and Knowledge Distillation"
+title:  "Knowledge Distillation and Incremental Learning"
 categories: deep-learning, computer-vision, detection, incremental-learning
 --- 
-**INCOMPLETE**
 
 
 A detailed introduction to Knowledge distillation from complex neural networks and a much needed end to end Incremental Learning technique. 
@@ -108,7 +107,7 @@ Since a readily available setup is not available to tes incremental learning ben
 
 For ImageNet, there is a marked difference in the performance of the model when the number of classes is changed from 10(on the left) to 100(on the right), as seen in the following figure.
 
-<img src="{{site.url}}/images/increm_5.png" style="display: block; margin: auto;" />
+<img src="{{site.url}}/images/increm_7.png" style="display: block; margin: auto;" />
 
 
 This method performs consistently well on both the datasets and outperforms other state of the art results. The following tables represent the incremental approach with the number of classes in each step denoted as columns. The left table shows results for the CIFAR-100 dataset, whereas the right table shows results for the ImageNet dataset.
