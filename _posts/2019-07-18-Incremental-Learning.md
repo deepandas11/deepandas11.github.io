@@ -93,15 +93,35 @@ The Incremental Learning step has four main steps as illustrated in the followin
 - **Construction of the Training set**: The training set should have samples from both new and old classes. The design of the loss function is such that each sample should have two associated labels. For the classification loss component \\(L_C\\), we use the one-hot encoded vector. For the distillation loss component \\(L_{D_f}\\), we use the logits produced by every classification layer with old classes. Each image in the training set has a classification label and \\(F\\) distillation labels, where \\(F\\) is the number of old classification layers. 
 - **Training**: During training, all weights are updated. For any sample, the features obtained from the feature extractor are likely to change between successive incremental steps. The classification layer should adapt to this. 
 - **Balanced Fine Tuning**: To deal with the unbalanced training scenario with regard to new and old classes, the authors introduce an additional fine-tuning stage with a small learning rate and a balanced set of samples. This subset has samples from all classes, old and new. To prevent the model from forgetting the knowledge it acquired in the previous step, the authors added a temporary distillation loss to the classification layer of the new class. 
-- **Representative Memory Update**: The representative memory must be updated to include exemplars from the new class. 
+- **Representative Memory Update**: The representative memory must be updated to include exemplars from the new class. The selection and removal operations are conducted in a fashion as discussed previously. 
 
 
 
+### Training Procedure
+
+Since a readily available setup is not available to tes incremental learning benchmarks, the authors split the classes of traditional multi-class dataset into incremental batches. Standard data augmentation steps are also included before any kind of training in the network. The datasets used are CIFAR-100 and ImageNet. The number of classes in each incremental step has also been changed during experimentation, as seen in the following figure. The results for CIFAR-100 are promising. In the left graph, one can see the classes being increased by 2 in each incremental step, whereas on the right, the classes are being increased by 5 in each incremental step. 
 
 
 
+<img src="{{site.url}}/images/increm_5.png" style="display: block; margin: auto;" />
 
 
+For ImageNet, there is a marked difference in the performance of the model when the number of classes is changed from 10(on the left) to 100(on the right), as seen in the following figure.
+
+<img src="{{site.url}}/images/increm_5.png" style="display: block; margin: auto;" />
+
+
+This method performs consistently well on both the datasets and outperforms other state of the art results. The following tables represent the incremental approach with the number of classes in each step denoted as columns. The left table shows results for the CIFAR-100 dataset, whereas the right table shows results for the ImageNet dataset.
+
+
+<img src="{{site.url}}/images/increm_6.png" style="display: block; margin: auto;" />
+
+
+
+To conclude, this post is intended to help get a better understanding of Knowledge Distillation from complex networks to smaller networks. This enables the transfer of knowledge from much more complex networks to simpler networks. This is done by using the distillation technique that transfers the generalization ability of the complex network to the simpler network, instead of transferring the exact discriminative ability of the complex network. This idea is used to develop an incremental approach. This model trains end to end and based on experimentation, performs better than other state of the art results.
+
+
+Thanks for reading!
 
 
 
