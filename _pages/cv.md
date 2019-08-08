@@ -17,19 +17,19 @@ Work experience
 ======
 * Fall 2019: Deep Learning Research Intern
   * [Scortex, Paris-France](https://scortex.io)
-  * <sub>Responsibilities include working on Self-supervised methods in Object detection frameworks to improve automated industrial quality control.</sub>
+  * Responsibilities include working on Self-supervised methods in Object detection frameworks to improve automated industrial quality control.
 
 * Spring 2019: Graduate Teaching Assistant
   * Department of Computer Sciences, UW Madison
   * CS-301 : Data Programming
-<!-- 
+
 * Summer 2017: Research Fellow Intern 
   * Indian Academy of Sciences, Virtual Reality Lab - IIST Thiruvananthapuram
   * Guide: Dr. Deepak Mishra
 
 * Summer 2016: Research Fellow Intern
   * Indian Institute of Information Technology, Speech Image and Language Processing Laboratory
-  * Guide: Dr. Uma Shanker Tewary -->
+  * Guide: Dr. Uma Shanker Tewary
 
 Publications
 ======
