@@ -40,7 +40,6 @@ Publications
 
 * Semi-Supervised Phrase Localization in a Bidirectional Caption-Image Retrieval Framework
   * [ArXiv Preprint - pdf](https://arxiv.org/pdf/1908.02950.pdf)
-  * Awaiting Review at WACV-2020
 
 Education
 ======
