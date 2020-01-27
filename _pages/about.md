@@ -13,8 +13,8 @@ Welcome to my Personal Website.
 
 I am a graduate student at [The University of Wisconsin-Madison](https://www.engr.wisc.edu/department/electrical-computer-engineering/). I usually find myself probing on topics like:
 
-- Multimodal Learning
-- Semi-supervised methodologies 
+- Transfer Learning
+- Self-supervised methodologies 
 - Incremental Learning techniques
 
 You can find my technical blogposts [here](https://deepandas11.github.io/year-archive/)
