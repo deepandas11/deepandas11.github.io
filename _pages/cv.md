@@ -9,12 +9,17 @@ redirect_from:
 
 {% include base_path %}
 
-Find a link to my [full resume here](https://drive.google.com/file/d/1-vDNskCVdg80PsGltcIdbzJlcT_4cIWj/view?usp=sharing)
-
+Find a link to my [full resume here](https://www.dropbox.com/s/qsrld8ca9l0gkag/DeepanDas-Resume.pdf?dl=0)
 
 
 Work experience
 ======
+* Summer 2020: Data Scientist Intern
+  * [Datachat, Madison](https://datachat.ai)
+  * Improve existing Conversational AI platform for automated Analytics and ML workflows.
+  * Design improvement of graph based delayed execution pipelines for ML model training and pre-processing.
+  * Build persistent ML Model Serving pipelines using ONNX across user sessions for multiple ML frameworks. 
+  
 * Fall 2019: Deep Learning Research Intern
   * [Scortex, Paris-France](https://scortex.io)
   * Responsibilities include working on Self-supervised methods in Object detection frameworks to improve automated industrial quality control.
@@ -33,13 +38,21 @@ Work experience
 
 Publications
 ======
+
+* An Empirical Analysis of the Impact of Data Augmentation on Distillation
+    * [ICML 2020 Workshop on Uncertainty and Robustness in Deep Learning](https://sites.google.com/view/udlworkshop2020/home?authuser=0)
+    * July, 2020
+    * [ICML UDL 2020 Paper](http://www.gatsby.ucl.ac.uk/~balaji/udl2020/accepted-papers/UDL2020-paper-082.pdf)
+
+* Semi-Supervised Phrase Localization in a Bidirectional Caption-Image Retrieval Framework
+  * [ArXiv Preprint - pdf](https://arxiv.org/pdf/1908.02950.pdf)
+
 * Unsupervised Anomalous Trajectory Detection in Crowded Scenes
   * 13th IEEE International Conference on Industrial and Information System
   * December, 2018
   * [ArXiv Print - pdf](https://arxiv.org/pdf/1907.01717.pdf)
 
-* Semi-Supervised Phrase Localization in a Bidirectional Caption-Image Retrieval Framework
-  * [ArXiv Preprint - pdf](https://arxiv.org/pdf/1908.02950.pdf)
+
 
 Education
 ======
