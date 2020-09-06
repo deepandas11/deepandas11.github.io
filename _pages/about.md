@@ -9,23 +9,22 @@ author_profile: true
 ---
 
 
+
 Welcome to my Personal Website.
 
-I am a graduate student at [The University of Wisconsin-Madison](https://www.engr.wisc.edu/department/electrical-computer-engineering/).
- I work with [Prof. Sharon Li](http://pages.cs.wisc.edu/~sharonli/) and usually find myself probing on topics like:
+I am a senior graduate student at [The University of Wisconsin-Madison](https://www.engr.wisc.edu/department/electrical-computer-engineering/). I work with [Prof. Sharon Li](http://pages.cs.wisc.edu/~sharonli/) and usually find myself probing on topics like:
 
-- Continual Learning and Robustness in Deep Learning 
-- Machine Learning Pipelines and Systems
+- *Continual Learning and Robustness in Deep Learning*
+- *Machine Learning Pipelines and Systems*
 
-
-You can find my technical blogposts [here](https://deepandas11.github.io/year-archive/).
-
-When I am not invested in my academic pursuits, I am probably busy [with this.](https://deepandas11.github.io/beyond/)
+You can find my technical blogposts [here](https://deepandas11.github.io/year-archive/). When I am not invested in my academic pursuits, I am probably busy [with this.](https://deepandas11.github.io/beyond/)
 
 
-Highlights:
+
+
+**Highlights Reel**:
 - Aug, 2020: Wrapped up my internship at [Datachat](https://www.datachat.ai) as a Data Scientist. At Datachat, I am involved in the development of natural language prompted Machine Learning pipelines that reduce the technical barrier to perform ML and analytics workflows.
-- Sep 2020: Joined as a Teaching Assistant for the Course [CS/ECE 533: Digital Image Processing]() at UW Madison. 
+- Aug 2020: Joined as a Teaching Assistant for the Course [CS/ECE 533: Digital Image Processing]() at UW Madison. 
 - June, 2020: Paper titled ['An Empirical Analysis of the Impact of Data Augmentation on Distillation'](http://www.gatsby.ucl.ac.uk/~balaji/udl2020/accepted-papers/UDL2020-paper-082.pdf) published at ICML 2020-UDL workshop.
 - Dec, 2019: Wrapped up my internship at [Scortex](https://scortex.io/) as a Deep Learning Researcher.  At Scortex, I primarily contributed to improving the existing Vision based Defect detection system. I was successful in developing an effective Active Learning strategy for the underlying Deep Learning models.
 - Jan 2019: Joined as a Teaching Assistant for the Course [CS-301: Data Programming](https://tyler.caraza-harter.com/cs301/spring19/syllabus.html) at UW Madison. 
